@@ -1,0 +1,17 @@
++-----------------+----------------------+-----------+
+|                 | insert ms            | append ms |
++-----------------+----------------------+-----------+
+| tinyArray       | 0.0388               | 0.0836    |
++-----------------+----------------------+-----------+
+| smallArray      | 0.051399999999999994 | 0.0958    |
++-----------------+----------------------+-----------+
+| mediumArray     | 0.186                | 0.1364    |
++-----------------+----------------------+-----------+
+| largeArray      | 9.295                | 0.5911    |
++-----------------+----------------------+-----------+
+| extraLargeArray | 1034.0952            | 3.2876    |
++-----------------+----------------------+-----------+
+
+The above graph shows the timing for several iterations of two functions. The first function takes an array of numbers and inserts them into a new array using push (append) or unshift (insert) methods. The iterations range from 10 digits (tinyArray) to 100,000 digits (extraLargeArray). The graph shows that inserting is faster when handling a small arrays but does not scale as well as appending when getting into the larger arrays. The graph shows that insert is 2x faster than append when handling 10 numbers, but it is 314x slower when handling 100,000 numbers. 
+
+The reason unshift becomes slower with scale is because once a number is inserted it is given an index of 0 and all other numbers in the array must be given a new index. So it would have to move the element at position N to position N+1, N1 to N1+1, N2 to N2+1 etc. This gives it a time complexity of O(n) since it has to loop through every number in the array. When appending only the new number is assigned an index which makes it far more scalable. 
