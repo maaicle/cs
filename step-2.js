@@ -18,7 +18,11 @@ const testArr = [1, 2, 3, 4, -5, -1];
 // The second loop iterates n-i-1 times. In total the inner iterates n-1 + n-2 + n-3... This sumed up will show that it iterates half as many times as the outer loop (n-1)/2.
 // Since one loop is nested in the other you have to mulitply them and you get n*(n-1)/2. When we remove the constants it simplifies to n*n or O(n^2).
 
-// Space complexity is O(n).
+// Space complexity is O(1).
+// Since we only care about auxilary space complexity (space required by the algorithm) we do not include inputs (function's arguments).
+//  i is storing one number. Most primative datatypes are considered constants space (not strings), so i would be O(1).
+// j is the same situation as i so it is O(1).
+// nothing else is being stored so the equation is 1 + 1 = O(1).
 
 // 2. Write a function that takes in a single word, as a string. It should return True if that word contains only unique characters. Return False otherwise.
 const hasUniqChars = string => {
@@ -36,7 +40,8 @@ const testString = 'Moonday';
 // The turnary statement is O(1).
 // Together they are n + n + n + n + 1 = O(n).
 
-// Space complexity is O(n).
+// Space complexity is O(1).
+// stringSet is storing data based on the input. It's using the Set class which will only save unique characters. Although string will have an infinite amount of characters, stringSet will max out at some point (not sure when that is).  Making it O(1).
 
 // 3. A pangram is a sentence that contains all the letters of the English alphabet at least once, like “The quick brown fox jumps over the lazy dog.”
 // Write a function to check a sentence to see if it is a pangram or not.
@@ -66,7 +71,10 @@ const testPan = '123 The quick brown fox jumps over the lazy dog!'
 // I believe the equation for the function would be written out as 1 + 1 + n + n + n (26 + n) + n = O(n * n) = O(n^2)
 // I think I could have gotten it down to O(n) if uniqChars was an array that I pushed ele into (O(1)). Then after the loop got unique values by spreading uniqChars into a Set.
 
-// Space complexity is O(n).
+// Space complexity is O(1).
+// uniqChars will max out at 26 chars since it will only accept alph characters and does not accept duplicates. Making it O(1)
+// alph is a const 26 chars so it is O(1)
+// Worse case scenario will be 26 + 26 = O(1)
 
 // 4. Write a function, find_longest_word, that takes a list of words and returns the length of the longest one.
 
@@ -89,7 +97,4 @@ console.log(findLongestWord(["hi", "hello", "sup"]));
 // The equation would be 1 + n * (1 + 1) = O(n).
 
 // Space complexity is O(n).
-
-
-
-
+// Worse case scenario is arr is filled with infinite amount of strings which character lengths increment with each iteration. Meaning that the longest var will be holding a string with infinite characters (O(n)).
